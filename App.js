@@ -11,8 +11,7 @@ import {
   Text,
   TextInput,
   StatusBar,
-  Button,
-  Image
+  TouchableOpacity
 } from 'react-native';
 
 import NumericInput from 'react-native-numeric-input'
@@ -39,7 +38,8 @@ export default class CifraDeCesar extends Component {
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}>
-            
+
+           
             <View>
               <Text style={styles.titleText}>Cifra de César</Text>
             </View>
@@ -48,6 +48,7 @@ export default class CifraDeCesar extends Component {
                 multiline={true}
                 numberOfLines={7}
                 style={styles.text}
+                textAlign={'center'}
                 placeholder="Texto original"
                 //Definir originalText
                 onChangeText={(text) => this.setState({ originalText: text })}
@@ -57,13 +58,13 @@ export default class CifraDeCesar extends Component {
             </View>
             <View style={styles.aligned}>
               <Text style={styles.keyText}>Chave: </Text>
-              <NumericInput style={styles.numeric} 
-                  onChange={
-                //Definir increment
-                value => this.setState({ increment: value })}
+              <NumericInput style={styles.numeric}
+                onChange={
+                  //Definir increment
+                  value => this.setState({ increment: value })}
               />
             </View>
-            
+
             <View style={styles.view}>
               <TextInput
                 multiline={true}
@@ -72,10 +73,11 @@ export default class CifraDeCesar extends Component {
                 placeholder="Texto cifrado"
                 editable={false}
                 value={this.state.finalText}
+                textAlign={'center'}
               />
             </View>
             <View>
-              <Button title='Cifrar'
+              <TouchableOpacity
                 style={styles.okButton}
                 onPress={
                   () => {
@@ -88,7 +90,10 @@ export default class CifraDeCesar extends Component {
                     this.setState({ finalText: result })
                   }
 
-                } />
+                }
+              >
+                <Text style={styles.buttontext}> CIFRAR </Text>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -101,69 +106,74 @@ export default class CifraDeCesar extends Component {
 //Styles
 const styles = StyleSheet.create({
   titleText: {
-    color: 'white',
-    marginTop: 30,
-    marginBottom: 10,
+    color: '#36213E',
+    marginTop: 20,
+    marginBottom: 5,
     marginLeft: 10,
     marginRight: 10,
     textAlign: 'center',
-    fontSize: 30,
-    textShadowColor: 'grey'
+    fontSize: 50,
+    backgroundColor: '#63768D',
+    fontWeight: 'bold',
 
   },
   keyText: {
-    color: 'white',
-    marginTop: 20,
+    color: '#0F0A0A',
+    marginTop: 5,
     marginBottom: 20,
     marginLeft: 10,
     marginRight: 10,
-    textAlign: 'center',
+    alignItems: 'center',
     fontSize: 20,
-    textShadowColor: 'grey',
+    textShadowColor: '#8AE9C1',
     textAlignVertical: 'center'
-
   },
   scrollView: {
-    backgroundColor: 'orange', marginBottom: 10
+    backgroundColor: '#63768D', marginBottom: 10
   },
   view: {
-    backgroundColor: 'grey',
+    backgroundColor: '#63768D',
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 5,
+    marginBottom: 10,
+    padding: 5
   },
   text: {
     marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderRadius: 20
   },
   finaltext: {
     marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
-    marginBottom: 10,
+    marginBottom: 5,
     backgroundColor: 'white',
     color: 'black',
-    fontSize: 16
+    fontSize: 16,
+    borderRadius: 20
   },
   okButton: {
     marginLeft: 10,
     marginRight: 10,
-    marginTop: 20,
-    fontSize: 20,
-    marginBottom: 10
-    //flex: 2,
-    //width: '80%',
-    //flexDirection: 'row',
-    //justifyContent: 'space-around'
+    marginTop: 5,
+    marginBottom: 10,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#EEE3AB',
+    alignItems: 'center'
   },
   aligned: {
-    flex: 1,
     flexDirection: 'row'
-  }, 
-  numeric:{
+  },
+  numeric: {
     textAlignVertical: 'center'
+  },
+  buttontext: {
+    fontSize: 30
   }
 });
 
